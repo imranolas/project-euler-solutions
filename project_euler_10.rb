@@ -5,7 +5,7 @@
 
 class PrimeNum
 
-  def prime_below(num)
+  def self.prime_below(num)
   arr = *(2..num)  
   p = arr.min
   while p
@@ -16,11 +16,11 @@ class PrimeNum
   arr
 end
 
-  def sum_of_primes_below(num)
+  def self.sum_of_primes_below(num)
     prime_below(num).inject { |sum, i| sum + i }
   end
 
 end
 
-
+puts PrimeNum.sum_of_primes_below(2_000_000)
 

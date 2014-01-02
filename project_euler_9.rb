@@ -5,19 +5,22 @@
 # There exists exactly one Pythagorean triplet for which a + b + c = 1000
 # Find the product abc.
 
-def squares_smaller_than(num)
-  arr = []
-  (1..num).each do |x|
-    arr << x * x if x < num
-  end
-  arr
-end
 
 def pythagorean_triplet_equal_to(num)
-  arr = squares_smaller_than(num).combination(3).to_a.map { |a| a.sort! }
-  arr = arr.select do |a| 
-    a.sort.first + a.sort[1] == a.sort.last
+  1.upto(num) do |m|
+    (m+1).upto(num) do |n|
+      if 2*(n**2) + (2 * n * m) == num 
+        a = n**2 - m**2
+        b = 2 * n * m
+        c = n**2 + m**2
+        return [a,b,c]
+      end
+    end
   end
 end
 
-puts pythagorean_triplet_equal_to(1000)
+def product_of_pythag_triple(arr)
+  arr.inject(1) { |total, i| i * total }
+end
+
+puts product_of_pythag_triple(pythagorean_triplet_equal_to(1000))
